@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}  <!--   -->
+{% block body %} 
+
+
+<h2>Incomplete Tasks</h2>
+{% for task in all_task %}
+    {% if task.completed == False %}
+        {{task.description}}  <!-- show this if incompleted  -->
+        {{ task.date_created}}
+    {% endif %} 
+{% endfor %}
+
+
+    <h2>Complete Tasks</h2>
+    {% for task in all_task %}
+        {% if task.completed == True %}
+            {{task.description}}
+            {{ task.date_created}}
+        {% endif %} 
+    {% endfor %}
+
+{% endblock body %}
+    
