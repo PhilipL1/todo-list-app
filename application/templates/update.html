@@ -1,6 +1,8 @@
-<!--  show a web form  -->
+
 {% extends 'layout.html' %}  <!--   -->
 {% block body %} 
+<br><br>
+Original Tasks: {{task.description}}  <!-- shows the task on form   -->
 <br><br>
 <form action ='' method = 'POST'>
 {{ form.hidden_tag() }}
