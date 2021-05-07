@@ -15,12 +15,12 @@ def home():
 @app.route("/create", methods=["GET", "POST"]) #allow get & post request 
 def create():
     form=TaskForm()
-    if request.method == "POST": #post request: send  the filled/complete info to the route
-        if form.validate_on_submit():
+    if request.method == "POST": #(check to see if the method a post request.)post request: send  the filled/complete info to the route
+        if form.validate_on_submit():#check if the form validates 
             new_task = Tasks(description = form.description.data) #check if new task has been added with the data
             db.session.add(new_task) # add the new task to the route 
             db.session.commit() # commit to the data base itself
-            return redirect(url_for("home"))  #back to the home page
+            return redirect(url_for("home"))  #redirect back to the home page
     return render_template("add.html", title = "Create a Task", form=form)
 
 @app.route("/complete/<int:id>")
