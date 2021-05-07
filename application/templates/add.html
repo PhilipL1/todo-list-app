@@ -1,0 +1,10 @@
+<!--  show a web form  -->
+{% extends 'layout.html' %}  <!--   -->
+{% block body %} 
+<br><br>
+<form action ='' method = 'POST'>
+{{ form.hidden_tag() }}
+{{form.description.label}} {{form.description}}<br>
+{{form.submit}}
+</form>
+{% endblock body %} 
