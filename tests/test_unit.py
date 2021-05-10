@@ -11,6 +11,7 @@ class TestBase(TestCase):# Create the base class
             SQLALCHEMY_DATABASE_URI="sqlite:///test.db",
             SECRET_KEY='TEST_SECRET_KEY',
             DEBUG=True,
+            WTF_CSRF_ENABLED= False  #diabled security for testing 
             )
         return app
 
@@ -56,7 +57,7 @@ class TestViews(TestBase):
 class TestRead(TestBase):
     def test_read_tasks(self):
         response= self.client.get(url_for("home")) #make a get requisition one of the groups. Read the task in the "home" page 
-        self.asserIn(b"Test the flask app", response.data) # same as test_task above (>>same<<) b= meanscompare text to webpage 
+        self.assertIn(b"Test the flask app", response.data) # same as test_task above (>>same<<) b= meanscompare text to webpage 
 
 class TestCreate(TestBase):
     def test_create_task(self):
@@ -69,10 +70,10 @@ class TestCreate(TestBase):
 class TestUpdate(TestBase):
     def test_update_task(self):
         response = self.client.post(url_for("update", id=1), #id will be 1 in the database
-        data= dict(description = "Update a task"), 
+        data = dict(description = "Update a task"), #send info
         follow_redirects= True
         )
-        self.assertIn(b"Update a new task", response.data)
+        self.assertIn(b"Update a task", response.data)
 
 class TestDelete(TestBase):
     def test_delete_task(self):
