@@ -23,21 +23,21 @@ def create():
             return redirect(url_for("home"))  #redirect back to the home page
     return render_template("add.html", title = "Create a Task", form=form)
 
-@app.route("/complete/<int:id>")
+@app.route("/complete/<int:id>") #button will only do post request  
 def complete(id):
     task=Tasks.query.filter_by(id=id).first()
     task.completed =True
     db.session.commit()
-    return f"Task {id} is now completed"
+    return redirect(url_for("home"))
 
-@app.route("/incomplete/<int:id>")
+@app.route("/incomplete/<int:id>") #button will only do post request 
 def incomplete(id):
     task= Tasks.query.filter_by(id=id).first()
     task.completed =False
     db.session.commit()
-    return f"Task {id} is now incomplete "
+    return redirect(url_for("home"))
 
-@app.route("/update/<int:id>", methods=["GET","POST"]) #buton will get the id 
+@app.route("/update/<int:id>", methods=["GET","POST"]) #buton will get the id & post request 
 def update(id):
     form= TaskForm()
     task= Tasks.query.filter_by(id=id).first()

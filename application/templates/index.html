@@ -15,6 +15,9 @@
         <form action= "{{url_for('delete', id=task.id)}}" > 
             <input type = submit value="Delete"> <!-- create & name delete button  -->
         </form>
+        <form action= "{{url_for('complete', id=task.id)}}" > 
+            <input type = submit value="Complete"> <!-- create & name a complete button  -->
+        </form>
         <br>
         <br>
     {% endif %} 
@@ -33,6 +36,9 @@
         </form>
         <form action= "{{url_for('delete', id=task.id)}}" > 
             <input type = submit value="Delete"> <!-- create & name delete button  -->
+        </form>
+        <form action= "{{url_for('incomplete', id=task.id)}}" > 
+            <input type = submit value="Incomplete"> <!-- create & name a Incomplete button  -->
         </form>
         <br>
         <br>
